@@ -67,7 +67,7 @@ Physical machines are named after Japanese bullet-train services. The faster the
 | Mac mini | `hikari-macm` |
 | Desktop | `nozomi-desk` |
 
-### Guests: Periodic table ⚛️
+### Guests: Periodic table
 
 Containers and VMs are named after chemical elements. The **atomic number is the last octet of the guest's IPv4 address**, so you never need to look up an address. The element is prefixed with the guest's OS (abbreviated), so a list of guests shows what's running inside each one.
 
