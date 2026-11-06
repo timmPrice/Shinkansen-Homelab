@@ -1,19 +1,21 @@
-# Homelab
+# Shinkansen - Homelab
 
 A self-hosted lab built as infrastructure as code: **Terraform**-provisioned **Incus** containers and VMs, connected over **Tailscale**, with a naming and addressing scheme that makes every machine's role and IP readable at a glance.
 
-![Terraform](https://img.shields.io/badge/Terraform-7B42BC?logo=terraform&logoColor=white)
-![Incus](https://img.shields.io/badge/Incus-E95420?logo=linuxcontainers&logoColor=white)
-![Tailscale](https://img.shields.io/badge/Tailscale-242424?logo=tailscale&logoColor=white)
-![NixOS](https://img.shields.io/badge/NixOS-5277C3?logo=nixos&logoColor=white)
-![Status](https://img.shields.io/badge/status-in%20progress-yellow)
+<p align="center">
+  <img src="https://img.shields.io/badge/Terraform-7B42BC?logo=terraform&logoColor=white" alt="Terraform">
+  <img src="https://img.shields.io/badge/Incus-E95420?logo=linuxcontainers&logoColor=white" alt="Incus">
+  <img src="https://img.shields.io/badge/Tailscale-242424?logo=tailscale&logoColor=white" alt="Tailscale">
+  <img src="https://img.shields.io/badge/NixOS-5277C3?logo=nixos&logoColor=white" alt="NixOS">
+  <img src="https://img.shields.io/badge/status-in%20progress-yellow" alt="Status: in progress">
+</p>
 
 > Started November 2026 and under active development. See the [roadmap](#-roadmap).
 
 ---
 
 <p align="center">
-  <img src="images/shinkansen.webp" alt="Shinkansen bullet train" width="320">
+  <img src="./images/shinkansen.webp" alt="Shinkansen bullet train" width="320">
 </p>
 
 ## Contents
@@ -28,33 +30,11 @@ A self-hosted lab built as infrastructure as code: **Terraform**-provisioned **I
 
 ## 🗺 Architecture
 
-```mermaid
-flowchart TB
-    gw["hydrogen<br/>gateway · 10.9.20.1"]
-
-    subgraph lan["LAN · 10.9.20.0/24"]
-        direction TB
-        subgraph lets["kodama-lets · Incus host"]
-            c["lxc-carbon<br/>10.9.20.6"]
-            u["nix-uranium<br/>10.9.20.92"]
-        end
-        envy["kodama-envy<br/>daily driver"]
-        macm["hikari-macm"]
-        desk["nozomi-desk"]
-    end
-
-    gw --- lan
-    ts(["Tailscale tailnet"]) -.- lets
-    tf["Terraform<br/>ln-incus/"] -->|"Incus API"| lets
-```
-
----
-
-## Naming Convention
+### Naming Convention
 
 Every name has two parts: a **theme**, which tells you what kind of machine it is, and an **identifier**, which tells you which one.
 
-### Hosts: Shinkansen service tiers 🚄
+### Hosts: Shinkansen service tiers
 
 Physical machines are named after Japanese bullet-train services. The faster the service, the bigger the hardware. The tier is followed by a 4-letter identifier for the machine.
 
@@ -83,7 +63,7 @@ Containers and VMs are named after chemical elements. The **atomic number is the
 
 ---
 
-## 🌐 Addressing Scheme
+### 🌐 Addressing Scheme
 
 A single flat `/24` is split so that guest addresses follow the periodic table:
 
@@ -98,7 +78,7 @@ There are 118 elements, so the guest range can never run out of names before it 
 
 ---
 
-## 📁 Repository Layout
+### 📁 Repository Layout
 
 ```
 .
