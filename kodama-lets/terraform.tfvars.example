@@ -1,0 +1,2 @@
+incus_address = "https://kodama-lets:8443"
+incus_token   = "paste-token-here"

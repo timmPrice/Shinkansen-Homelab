@@ -5,16 +5,7 @@ Status: **ready** = can do now · **blocked** = waiting on something · **done**
 
 ## Ready
 
-- [ ] **Fill in `.gitignore`.** It exists but is empty. Do this before the first `terraform init` or apply in the repo:
-  ```
-  .terraform/
-  *.tfstate
-  *.tfstate.*
-  *.tfvars
-  crash.log
-  ```
-  Do commit `.terraform.lock.hcl`.
-- [ ] **Move the Incus trust token out of `main.tf`.** Use a `sensitive = true` variable read from a gitignored `*.tfvars` or `TF_VAR_incus_token`. It's one-time use, so it can be removed once the client cert is trusted.
+- [ ] **Move the Incus trust token and address out of `main.tf`** into `variables.tf` + gitignored `terraform.tfvars` (+ committed `terraform.tfvars.example`). Use a `sensitive = true` variable read from a gitignored `*.tfvars` or `TF_VAR_incus_token`. It's one-time use, so it can be removed once the client cert is trusted.
 - [ ] **Optional:** guest example `lxc-carbon` doesn't follow the OS-prefix rule (`lxc` is an instance type). Something like `deb-carbon` would. Only if Tim wants it.
 - [ ] **Optional:** explain the `ln-` folder prefix (`ln-incus`) in the README.
 
@@ -22,7 +13,6 @@ Status: **ready** = can do now · **blocked** = waiting on something · **done**
 
 - [ ] **`ln-incus/main.tf`: real remote address.** Blocked: `kodama-lets` has no address yet.
   - Set `address` (`"https://<ip-or-tailscale-name>:8443"`); a Tailscale MagicDNS name could work.
-  - Change `default_remote` from `"local"` to `"kodama-lets"`, or resources go to the machine running Terraform.
 - [ ] **Tailscale on `kodama-lets`.** Blocked: server setup. Afterwards, decide whether Terraform and admin traffic use Tailscale names or LAN IPs.
 - [ ] **Router DHCP pool limited to `192.168.0.119`–`.254`.** Blocked: no router access for a few months.
   - Until then: if a guest's element IP is already taken, rename the guest (Tim's chosen workaround).
@@ -33,7 +23,8 @@ Status: **ready** = can do now · **blocked** = waiting on something · **done**
 
 - [x] 2026-11-05: Neovim terraform-ls confirmed working. It looked dead because there were no providers or `terraform init` yet.
 - [x] 2026-11-05: Provider attribute fixed: `accept_remote_certificate` (singular).
-- [x] 2026-11-05: Remote renamed to `kodama-lets`.
+- [x] 2026-11-05: Remote renamed to `kodama-lets`; `default_remote` set to it.
+- [x] 2026-11-05: `.gitignore` filled in (.terraform/, tfstate, *.tfvars, crash.log). Remember to commit `.terraform.lock.hcl`.
 - [x] 2026-11-05: README: private IPs, hydrogen = gateway, host names `<tier>-<4 letters>`, address ranges, atomic *number*, `.254` limit, typos.
 
 ## Decisions (don't re-suggest)

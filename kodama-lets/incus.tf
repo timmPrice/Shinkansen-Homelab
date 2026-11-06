@@ -15,8 +15,8 @@ provider "incus" {
 
   remote {
     name     = "kodama-lets"
-    address  = "0.0.0.0"
-    token    = "@@@"
+    address  = var.incus_address
+    token    = var.incus_token
     protocol = "incus"
   }
 }
