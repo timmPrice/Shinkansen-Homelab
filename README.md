@@ -26,13 +26,13 @@ A self-hosted lab built as infrastructure as code: **Terraform**-provisioned **I
 
 ```mermaid
 flowchart TB
-    gw["hydrogen<br/>gateway · 192.168.0.1"]
+    gw["hydrogen<br/>gateway · 10.9.0.1"]
 
-    subgraph lan["LAN · 192.168.0.0/24"]
+    subgraph lan["LAN · 10.9.0.0/24"]
         direction TB
         subgraph lets["kodama-lets · Incus host"]
-            c["lxc-carbon<br/>192.168.0.6"]
-            u["nix-uranium<br/>192.168.0.92"]
+            c["lxc-carbon<br/>10.9.0.6"]
+            u["nix-uranium<br/>10.9.0.92"]
         end
         envy["kodama-envy<br/>daily driver"]
         macm["hikari-macm"]
@@ -73,9 +73,9 @@ Containers and VMs are named after chemical elements. The **atomic number is the
 
 | Guest | Element | Atomic # | Address |
 |---|---|---|---|
-| `hydrogen` | Hydrogen | 1 | `192.168.0.1` (gateway) |
-| `lxc-carbon` | Carbon | 6 | `192.168.0.6` |
-| `nix-uranium` | Uranium | 92 | `192.168.0.92` |
+| `wrt-hydrogen` | Hydrogen | 1 | `10.9.0.1` (gateway) |
+| `ubu-carbon` | Carbon | 6 | `10.9.0.6` |
+| `nix-uranium` | Uranium | 92 | `10.9.0.92` |
 
 ---
 
@@ -85,10 +85,10 @@ A single flat `/24` is split so that guest addresses follow the periodic table:
 
 | Range | Use |
 |---|---|
-| `192.168.0.1` | Gateway (`hydrogen`) |
-| `192.168.0.2` – `192.168.0.118` | Guests: last octet = atomic number |
-| `192.168.0.119` – `192.168.0.254` | Hosts and other network devices |
-| `192.168.0.255` | Broadcast |
+| `10.9.0.1` | Gateway (`hydrogen`) |
+| `10.9.0.2` – `10.9.0.118` | Guests: last octet = atomic number |
+| `10.9.0.119` – `10.9.0.254` | Hosts and other network devices |
+| `10.9.0.255` | Broadcast |
 
 There are 118 elements, so the guest range can never run out of names before it runs out of addresses.
 
@@ -114,4 +114,4 @@ There are 118 elements, so the guest range can never run out of names before it 
 - [ ] Join hosts to the Tailscale tailnet
 - [ ] Bridged guest networking with static, element-based IPs
 - [ ] Provision first guests with Terraform
-- [ ] Limit router DHCP pool to `192.168.0.119`–`.254`
+- [ ] Limit router DHCP pool to `10.9.0.119`–`.254`
