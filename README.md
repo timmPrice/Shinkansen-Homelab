@@ -12,7 +12,9 @@ A self-hosted lab built as infrastructure as code: **Terraform**-provisioned **I
 
 ---
 
-![this](./images/shinkansen)
+<p align="center">
+  <img src="images/shinkansen.webp" alt="Shinkansen bullet train" width="320">
+</p>
 
 ## Contents
 
