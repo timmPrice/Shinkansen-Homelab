@@ -8,7 +8,6 @@ terraform {
 }
 
 provider "incus" {
-
   generate_client_certificates = true
   accept_remote_certificate    = true
   default_remote               = "kodama-lets"
@@ -27,22 +26,12 @@ resource "incus_instance" "wrt-hydrogen" {
   type  = "virtual-machine"
 
   device {
-    name = "lan"
+    name = "eth0"
     type = "nic"
 
     properties = {
       nictype = "bridged"
       parent  = var.lan_bridge
-    }
-  }
-
-  device {
-    name = "wan"
-    type = "nic"
-
-    properties = {
-      nictype = "physical"
-      parent  = var.wan_interface
     }
   }
 }

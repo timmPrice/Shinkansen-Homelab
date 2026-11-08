@@ -1,0 +1,21 @@
+network:
+  renderer: networkd
+  ethernets:
+    enp0s31f6:
+      dhcp4: false
+      dhcp6: false
+  bridges:
+    br0:
+      interfaces: [enp0s31f6]
+      macaddress: "4c:36:4e:b6:79:81"
+      dhcp4: true
+      parameters:
+        stp: false
+        forward-delay: 0
+  version: 2
+  wifis:
+    wlp0s20f3:
+      access-points:
+        Gamecock:
+          password: "<wifi-password>"
+      dhcp4: true
