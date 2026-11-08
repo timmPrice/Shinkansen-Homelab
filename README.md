@@ -34,6 +34,7 @@ A self-hosted lab built as infrastructure as code: **Terraform**-provisioned **I
 
 Every name has two parts: a **theme**, which tells you what kind of machine it is, and an **identifier**, which tells you which one.
 
+
 ### Hosts: Shinkansen service tiers
 
 Physical machines are named after Japanese bullet-train services. The faster the service, the bigger the hardware. The tier is followed by a 4-letter identifier for the machine.
@@ -43,6 +44,8 @@ Physical machines are named after Japanese bullet-train services. The faster the
 | `nozomi` | Fastest service | Full-size desktop |
 | `hikari` | Middle tier | Mini PC or similar |
 | `kodama` | Stops at every station | Laptop |
+
+Example Host Names: 
 
 | Machine | Hostname |
 |---|---|
@@ -63,7 +66,7 @@ Containers and VMs are named after chemical elements. The **atomic number is the
 
 ---
 
-### 🌐 Addressing Scheme
+### Addressing Scheme
 
 A single flat `/24` is split so that guest addresses follow the periodic table:
 
@@ -78,24 +81,12 @@ There are 118 elements, so the guest range can never run out of names before it 
 
 ---
 
-### 📁 Repository Layout
+## Roadmap
 
-```
-.
-├── README.md
-└── ln-incus/          # Terraform config for the Incus host (kodama-lets)
-    └── main.tf
-```
-
----
-
-## 🛣 Roadmap
-
-- [x] Define host and guest naming convention
-- [x] Define address plan
-- [x] Terraform provider config for Incus
-- [ ] Bring up `kodama-lets` as the Incus host
-- [ ] Join hosts to the Tailscale tailnet
+- [x] Bring up `kodama-lets` as the Incus host
+- [x] Join hosts to the Tailscale tailnet
+- [ ] Terraform provider config for Incus
+- [ ] OpenWRT bridged routing inside `kodama-lets`
 - [ ] Bridged guest networking with static, element-based IPs
-- [ ] Provision first guests with Terraform
 - [ ] Limit router DHCP pool to `10.9.20.119`–`.254`
+- [ ] Provision first guests with Terraform
